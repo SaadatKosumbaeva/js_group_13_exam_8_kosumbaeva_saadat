@@ -9,6 +9,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { NewQuoteComponent } from './new-quote/new-quote.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ToolbarComponent,
     NewQuoteComponent,
     HomeComponent,
-    SidebarComponent
+    SidebarComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

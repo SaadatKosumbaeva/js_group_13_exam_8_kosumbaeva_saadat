@@ -1,2 +1,2 @@
-<h4 class="mb-4">Title</h4>
-<app-quote-item></app-quote-item>
+<h4 class="mb-4 my-title">{{ title }}</h4>
+<app-quote-item *ngFor="let quote of quotes" [quote]="quote"></app-quote-item>
