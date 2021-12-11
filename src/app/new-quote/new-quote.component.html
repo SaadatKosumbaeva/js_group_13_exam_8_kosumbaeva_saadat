@@ -1,8 +1,8 @@
 <h4 class="mt-5 mb-4">Submit new quote</h4>
-<form>
+<form (ngSubmit)="addQuote()">
   <div class="row flex-column">
     <div class="form-group col-4">
-      <select class="form-control">
+      <select class="form-control" [(ngModel)]="category" name="category">
         <option value="star-wars">Star Wars</option>
         <option value="famous-people">Famous people</option>
         <option value="saying">Saying</option>
@@ -12,11 +12,11 @@
     </div>
     <div class="form-group col-8">
       <label for="quoteAuthor">Author</label>
-      <input type="text" class="form-control" name="quoteAuthor" id="quoteAuthor" placeholder="Author">
+      <input type="text" class="form-control" name="quoteAuthor" id="quoteAuthor" placeholder="Author" [(ngModel)]="author">
     </div>
     <div class="form-group col-8">
       <label for="quoteText">Quote text</label>
-      <textarea class="form-control" id="quoteText" name="quoteText" placeholder="Quote text"></textarea>
+      <textarea class="form-control" id="quoteText" name="quoteText" placeholder="Quote text" [(ngModel)]="text"></textarea>
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Save</button>
