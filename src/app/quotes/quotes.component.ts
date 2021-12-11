@@ -14,6 +14,7 @@ export class QuotesComponent implements OnInit {
   category = 'all';
   title = 'all';
 
+
   constructor(private http: HttpClient, private route: ActivatedRoute) {
   }
 
@@ -23,21 +24,33 @@ export class QuotesComponent implements OnInit {
       this.title = this.category;
       this.title = this.title.split('-').join(' ');
 
-      const url = this.category === 'all' ? 'https://skosumbaeva2502-default-rtdb.firebaseio.com/quotes.json' : 'https://skosumbaeva2502-default-rtdb.firebaseio.com/quotes.json?orderBy="category"&equalTo="' + this.category + '"';
-
-      this.http.get<{ [quoteId: string]: Quote }>(url)
-        .pipe(map(result => {
-          if (result === null) {
-            return [];
-          }
-          return Object.keys(result).map(quoteId => {
-            const quote = result[quoteId];
-            return new Quote(quoteId, quote.category, quote.author, quote.text);
-          })
-        }))
-        .subscribe(result => {
-          this.quotes = result;
-        });
+      this.getQuotes();
     });
+  }
+
+  getQuotes() {
+    const url = this.category === 'all' ? 'https://skosumbaeva2502-default-rtdb.firebaseio.com/quotes.json' : 'https://skosumbaeva2502-default-rtdb.firebaseio.com/quotes.json?orderBy="category"&equalTo="' + this.category + '"';
+
+    this.http.get<{ [quoteId: string]: Quote }>(url)
+      .pipe(map(result => {
+        if (result === null) {
+          return [];
+        }
+        return Object.keys(result).map(quoteId => {
+          const quote = result[quoteId];
+          return new Quote(quoteId, quote.category, quote.author, quote.text);
+        })
+      }))
+      .subscribe(result => {
+        this.quotes = result;
+      });
+  }
+
+  async onDeleteQuote(index: number) {
+    this.getQuotes();
+    if (this.quotes) {
+      await this.http.delete('https://skosumbaeva2502-default-rtdb.firebaseio.com/quotes/' + this.quotes[index].id + '.json').toPromise();
+      this.getQuotes();
+    }
   }
 }

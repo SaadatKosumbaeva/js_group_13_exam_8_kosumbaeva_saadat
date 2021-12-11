@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Quote } from '../../shared/quote.model';
 
 @Component({
@@ -8,10 +8,15 @@ import { Quote } from '../../shared/quote.model';
 })
 export class QuoteItemComponent implements OnInit {
   @Input() quote!: Quote;
+  @Output() quoteDelete = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
 
+  deleteQuote() {
+    this.quoteDelete.emit(this.quote.id);
   }
 }

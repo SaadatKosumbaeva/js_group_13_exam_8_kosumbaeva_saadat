@@ -1,2 +1,4 @@
 <h4 class="mb-4 my-title">{{ title }}</h4>
-<app-quote-item *ngFor="let quote of quotes" [quote]="quote"></app-quote-item>
+<ng-container *ngIf="quotes">
+  <app-quote-item *ngFor="let quote of quotes; let i = index" [quote]="quote" (quoteDelete)="onDeleteQuote(i)"></app-quote-item>
+</ng-container>
