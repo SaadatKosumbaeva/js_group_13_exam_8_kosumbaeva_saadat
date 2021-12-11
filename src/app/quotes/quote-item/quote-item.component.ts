@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Quote } from '../../shared/quote.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quote-item',
@@ -8,15 +9,19 @@ import { Quote } from '../../shared/quote.model';
 })
 export class QuoteItemComponent implements OnInit {
   @Input() quote!: Quote;
-  @Output() quoteDelete = new EventEmitter<string>();
+  @Output() quoteDelete = new EventEmitter();
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
   deleteQuote() {
-    this.quoteDelete.emit(this.quote.id);
+    this.quoteDelete.emit();
+  }
+
+  editQuote() {
+    void this.router.navigate(['quotes/' + this.quote.id + '/edit']);
   }
 }

@@ -6,11 +6,13 @@ import { NotFoundComponent } from './not-found.component';
 import { QuotesComponent } from './quotes/quotes.component';
 
 const routes: Routes = [
-  // {path: '', component: HomeComponent},
-  {path: 'quotes', component: HomeComponent, children: [
+  {
+    path: 'quotes', component: HomeComponent, children: [
       {path: ':id', component: QuotesComponent},
-    ]},
+    ]
+  },
   {path: 'add-quote', component: NewQuoteComponent},
+  {path: 'quotes/:id/edit', component: NewQuoteComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -18,4 +20,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
