@@ -1,1 +1,25 @@
-<p>new-quote works!</p>
+<h4 class="mb-4">Submit new quote</h4>
+<form>
+  <div class="row flex-column">
+    <div class="form-group col-4">
+      <select class="form-control">
+        <option value="star-wars">Star Wars</option>
+        <option value="famous-people">Famous people</option>
+        <option value="saying">Saying</option>
+        <option value="humor">Humor</option>
+        <option value="motivational">Motivational</option>
+      </select>
+    </div>
+    <div class="form-group col-8">
+      <label for="quoteAuthor">Author</label>
+      <input type="text" class="form-control" name="quoteAuthor" id="quoteAuthor" placeholder="Author">
+    </div>
+    <div class="form-group col-8">
+      <label for="quoteText">Quote text</label>
+      <textarea class="form-control" id="quoteText" name="quoteText" placeholder="Quote text"></textarea>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+
